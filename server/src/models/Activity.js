@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("Activity", {
     id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull:false,
       primaryKey: true,
+      autoIncrement:true
     },
     name: {
       type: DataTypes.STRING,
@@ -29,5 +30,5 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM("Spring", "Summer", "Fall", "Winter"),
       allowNull: false,
     },
-  });
+  },{timestamps:false});
 };
