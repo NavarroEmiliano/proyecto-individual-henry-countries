@@ -1,17 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Card from "../card/Card";
+import styles from "./Cards.module.css";
+import Pagination from "../pagination/Pagination";
 
-const Cards = ({ allCountries }) => {
+const Cards = () => {
+  const { filteredCountries } = useSelector((state) => state);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const cardsPerPage = 10;
+
+  const lastCardIndex = currentPage * cardsPerPage;
+  const firstCardIndex = lastCardIndex - cardsPerPage;
+
+  const currentCards = filteredCountries.slice(firstCardIndex, lastCardIndex);
 
   useEffect(() => {
-    
-  }, [allCountries])
-  
+    setCurrentPage(1);
+  }, [filteredCountries]);
+
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Cards</h2>
-      {allCountries.map(({ id, name, flagname, continent ,population}) => (
+      {currentCards.map(({ id, name, flagname, continent, population }) => (
         <Card
           id={id}
           key={id}
@@ -21,6 +33,12 @@ const Cards = ({ allCountries }) => {
           population={population}
         />
       ))}
+      <Pagination
+        filteredCountries={filteredCountries}
+        cardsPerPage={cardsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

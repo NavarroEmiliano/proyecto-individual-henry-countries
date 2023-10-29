@@ -42,4 +42,21 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+
 export default reducer;
+
+
+
+
+/* reordenamiento(continent: obj){
+  if(continent.sortBy.lenght <= 4){
+    comic.sort((a,b)=>{
+      sortBy === 'asc' ? a.tittle.localeCompare(b.tittle) : b.tittle.localeCompare(a.tittle)
+    });
+  }else{
+    comic.sort((a,b)=>{
+      sortBy === 'precioMin' ? a.price - b.price : b.price - a.price
+    });
+  }
+}
+ */

@@ -1,31 +1,23 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addAllCountries,
-  filterCountries,
-} from "../../redux/actions";
+import { useDispatch} from "react-redux";
+import { addAllCountries, filterCountries } from "../../redux/actions";
 import Cards from "../cards/Cards";
+
+import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { filteredCountries } = useSelector((state) => state);
-
-
 
   const handleFilter = (event) => {
-    if (event.target.name === "Continent") {
-      dispatch(filterCountries(event.target.value));
-    }
+    dispatch(filterCountries(event.target.value));
   };
-
-
 
   useEffect(() => {
     dispatch(addAllCountries());
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Home</h1>
       <h3>Ordenar por Continente</h3>
       <select name="Continent" onChange={handleFilter}>
@@ -39,17 +31,17 @@ const Home = () => {
         <option value="Antarctica">Antarctica</option>
       </select>
 
-      <select name="PopulationName" id="" >
+      <select name="PopulationName" id="">
         <option value="population">Población</option>
         <option value="name">Nombre</option>
       </select>
 
-      <select name="AscDesc" id="" >
+      <select name="AscDesc" id="">
         <option value="A">Ascendente</option>
         <option value="D">Descendente</option>
       </select>
 
-      <Cards allCountries={filteredCountries} />
+      <Cards />
     </div>
   );
 };
