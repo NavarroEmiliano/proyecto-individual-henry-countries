@@ -2,7 +2,7 @@
 import {
   ADD_ALL_COUNTRIES,
   GET_COUNTRY_BY_ID,
-  FILTER_CONTINENT,
+  SEARCH_COUNTRIES,
 } from "./action-type";
 
 const initialState = {
@@ -25,38 +25,28 @@ const reducer = (state = initialState, action) => {
         ...state,
         allCountries: action.payload,
       };
-    case FILTER_CONTINENT:
-      return {
-        ...state,
-        filteredCountries:
-          action.payload !== "Todos"
-            ? [...state.allCountries].filter((country) => {
-                return country.continent === action.payload;
-              })
-            : [...state.allCountries],
-      };
 
+      case SEARCH_COUNTRIES:
+        const { inputText, continent } = action.payload;
+      
+        const searchCondition = (country) => {
+          const countryName = country.name.toLowerCase();
+          const searchText = inputText.toLowerCase();
+          const continentFilter = continent === "Todos" || country.continent === continent;
+          return countryName.includes(searchText) && continentFilter;
+        };
+      
+        const countries = [...state.allCountries].filter(searchCondition);
+      
+        return {
+          ...state,
+          filteredCountries: countries,
+        };
+      
 
     default:
       return state;
   }
 };
 
-
 export default reducer;
-
-
-
-
-/* reordenamiento(continent: obj){
-  if(continent.sortBy.lenght <= 4){
-    comic.sort((a,b)=>{
-      sortBy === 'asc' ? a.tittle.localeCompare(b.tittle) : b.tittle.localeCompare(a.tittle)
-    });
-  }else{
-    comic.sort((a,b)=>{
-      sortBy === 'precioMin' ? a.price - b.price : b.price - a.price
-    });
-  }
-}
- */

@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import styles from "./Pagination.module.css"
+
 const Pagination = ({
   filteredCountries,
   cardsPerPage,
@@ -8,7 +10,7 @@ const Pagination = ({
 }) => {
   let pages = [];
 
-  for (let i = 1; i < Math.ceil(filteredCountries.length / cardsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(filteredCountries.length / cardsPerPage); i++) {
     pages.push(i);
   }
 
@@ -19,6 +21,7 @@ const Pagination = ({
   };
 
   let moreThanTen = filteredCountries.length > cardsPerPage;
+  console.log(currentPage)
 
   return (
     <div>
@@ -28,7 +31,7 @@ const Pagination = ({
 
       {pages.map((page, index) => {
         return (
-          <button key={index} onClick={() => handleCurrentPage(page)}>
+          <button className={styles.button}key={index} onClick={() => handleCurrentPage(page)}>
             {page}
           </button>
         );

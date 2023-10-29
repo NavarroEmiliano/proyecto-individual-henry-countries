@@ -1,7 +1,7 @@
 import {
   ADD_ALL_COUNTRIES,
   GET_COUNTRY_BY_ID,
-  FILTER_CONTINENT,
+  SEARCH_COUNTRIES
 } from "./action-type";
 import axios from "axios";
 const endpoint = "http://localhost:3001/countries";
@@ -34,9 +34,10 @@ export const getCountryById = (id) => {
   };
 };
 
-export const filterCountries = (continent) => {
+export const searchCountries = (input) => {
   return {
-    type: FILTER_CONTINENT,
-    payload: continent,
+    type: SEARCH_COUNTRIES,
+    payload: input,
   };
 };
+

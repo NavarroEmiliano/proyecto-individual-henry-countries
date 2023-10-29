@@ -1,7 +1,13 @@
-.container{
-  width: 100%;
-  margin: 50px;
-  flex-wrap: wrap;
+.cards_container {
+  min-width: 100vw;
   display: flex;
+  flex-wrap: wrap;
   align-content: space-between;
+  justify-content: center;
+  min-height: 85vh;
+  background-color: black;
+}
+.pagination_container {
+  display: flex;
+  justify-content: center;
 }

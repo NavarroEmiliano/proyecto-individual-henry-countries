@@ -16,29 +16,37 @@ const Cards = () => {
 
   const currentCards = filteredCountries.slice(firstCardIndex, lastCardIndex);
 
+
   useEffect(() => {
     setCurrentPage(1);
   }, [filteredCountries]);
 
+  console.log(filteredCountries)
+
+
   return (
-    <div className={styles.container}>
-      <h2>Cards</h2>
-      {currentCards.map(({ id, name, flagname, continent, population }) => (
-        <Card
-          id={id}
-          key={id}
-          name={name}
-          flagname={flagname}
-          continent={continent}
-          population={population}
+    <div>
+      {filteredCountries.length === 0 && <h2>No existe</h2>}
+      <div className={styles.cards_container}>
+        {currentCards?.map(({ id, name, flagname, continent, population }) => (
+          <Card
+            id={id}
+            key={id}
+            name={name}
+            flagname={flagname}
+            continent={continent}
+            population={population}
+          />
+        ))}
+      </div>
+      <div className={styles.pagination_container}>
+        <Pagination
+          filteredCountries={filteredCountries}
+          cardsPerPage={cardsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
         />
-      ))}
-      <Pagination
-        filteredCountries={filteredCountries}
-        cardsPerPage={cardsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      </div>
     </div>
   );
 };
