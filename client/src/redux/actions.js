@@ -1,7 +1,8 @@
 import {
   ADD_ALL_COUNTRIES,
   GET_COUNTRY_BY_ID,
-  SEARCH_COUNTRIES
+  SEARCH_COUNTRIES,
+  GET_ALL_ACTIVITIES,
 } from "./action-type";
 import axios from "axios";
 const endpoint = "http://localhost:3001/countries";
@@ -41,3 +42,20 @@ export const searchCountries = (input) => {
   };
 };
 
+export const getAllActivities = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/activities");
+      if(data){
+        return dispatch({
+          type: GET_ALL_ACTIVITIES,
+          payload: data,
+        });
+      }
+
+      return "No hay actividades"
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+};

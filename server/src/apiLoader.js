@@ -3,7 +3,7 @@ const { Country } = require("./db");
 
 const apiLoader = async () => {
   try {
-    const { data } = await axios("http://localhost:5000/countries");
+    const { data } = await axios.get("http://localhost:5000/countries");
     data.forEach(
       async ({
         cca3,
@@ -23,7 +23,7 @@ const apiLoader = async () => {
             continent: continents ? continents[0] : "undefined",
             capital: capital ? capital[0] : "undefined",
             subregion: subregion ? subregion : "undefined",
-            area: area,
+            area: Math.round(area),
             population: population,
           },
         });

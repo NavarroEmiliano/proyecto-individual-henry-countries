@@ -8,6 +8,7 @@ const Nav = () => {
   return (
     <div className={styles.container}>
       <Button to="/home" text="Home" />
+      <Button to="/activity" text="Actividades" />
       {pathname === "/home" && <SearchBar />}
     </div>
   );

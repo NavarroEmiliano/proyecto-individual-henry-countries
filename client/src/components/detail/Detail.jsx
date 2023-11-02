@@ -23,6 +23,7 @@ const Detail = () => {
     findCountry();
   }, []);
 
+
   return (
     <div>
       <h2>Pais: {country?.name}</h2>

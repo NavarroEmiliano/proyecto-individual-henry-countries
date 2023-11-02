@@ -21,7 +21,6 @@ const Cards = () => {
     setCurrentPage(1);
   }, [filteredCountries]);
 
-  console.log(filteredCountries)
 
 
   return (

@@ -21,15 +21,14 @@ const Pagination = ({
   };
 
   let moreThanTen = filteredCountries.length > cardsPerPage;
-  console.log(currentPage)
-
+console.log(filteredCountries.length)
   return (
     <div>
       {moreThanTen && (
         <button onClick={() => handleCurrentPage(currentPage - 1)}>Prev</button>
       )}
 
-      {pages.map((page, index) => {
+      {moreThanTen && pages.map((page, index) => {
         return (
           <button className={styles.button}key={index} onClick={() => handleCurrentPage(page)}>
             {page}
