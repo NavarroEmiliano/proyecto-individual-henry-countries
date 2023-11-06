@@ -1,9 +1,7 @@
 const { Op } = require("sequelize");
 const { Country, Activity } = require("../db");
 
-const getAllCountriesDb = async (req, res) => {
-  const { name } = req.query;
-
+const getAllCountriesDb = async (name) => {
   if (name) {
     // Búsqueda por nombre, incluyendo actividades.
     const countryFinded = await Country.findOne({

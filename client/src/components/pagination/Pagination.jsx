@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import styles from "./Pagination.module.css"
+import styles from "./Pagination.module.css";
 
 const Pagination = ({
   filteredCountries,
@@ -9,35 +9,61 @@ const Pagination = ({
   currentPage,
 }) => {
   let pages = [];
-
-  for (let i = 1; i <= Math.ceil(filteredCountries.length / cardsPerPage); i++) {
+  let totalPages = Math.ceil(filteredCountries.length / cardsPerPage);
+  for (let i = 1; i <= totalPages; i++) {
     pages.push(i);
   }
 
-  const handleCurrentPage = (page) => {
-    if (page > 0 && page < pages.length + 1) {
-      setCurrentPage(page);
-    }
+  let pagesToShow;
+  if (currentPage >= 5 && currentPage <= totalPages - 5) {
+    pagesToShow = pages.slice(currentPage - 5, currentPage + 4);
+  } else if (currentPage > 5 && currentPage >= totalPages - 5) {
+    pagesToShow = pages.slice(totalPages - 9, totalPages);
+  } else {
+    pagesToShow = pages.slice(0, 9);
+  }
+
+  let isMinimumToRender = filteredCountries.length > cardsPerPage;
+
+  const handleCurrentPage = (value) => {
+    let checkValue = currentPage + value;
+    if (checkValue > totalPages || checkValue < 1) return;
+    setCurrentPage((prev) => prev + value);
   };
 
-  let moreThanTen = filteredCountries.length > cardsPerPage;
-console.log(filteredCountries.length)
   return (
-    <div>
-      {moreThanTen && (
-        <button onClick={() => handleCurrentPage(currentPage - 1)}>Prev</button>
+    <div className={styles.container}>
+      {isMinimumToRender && (
+        <button
+          className={styles.paginator_buttons}
+          onClick={() => handleCurrentPage(-1)}
+        >
+          Prev
+        </button>
       )}
-
-      {moreThanTen && pages.map((page, index) => {
-        return (
-          <button className={styles.button}key={index} onClick={() => handleCurrentPage(page)}>
-            {page}
-          </button>
-        );
-      })}
-
-      {moreThanTen && (
-        <button onClick={() => handleCurrentPage(currentPage + 1)}>Next</button>
+      <div className={styles.paginator}>
+        {isMinimumToRender &&
+          pagesToShow.map((page, index) => {
+            return (
+              <button
+                key={index}
+                className={`${styles.button} ${
+                  currentPage === page ? styles.button__selected : ""
+                }`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            );
+          })}
+      </div>
+      {isMinimumToRender && (
+        <button
+          className={styles.paginator_buttons}
+          onClick={() => handleCurrentPage(1)}
+        >
+          Next
+        </button>
       )}
     </div>
   );

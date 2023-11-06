@@ -1,9 +1,29 @@
-
 .container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  height: 55px;
   width: 100%;
-  height: 5vh;
-  background-color: blue;
+  display:flex;
+  align-items: center;
+  background: transparent;
+  justify-content: space-between;
+  border: none;
+}
+
+.icon{
+  margin: 0;
+  padding: 0;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 20%;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+
+
 }

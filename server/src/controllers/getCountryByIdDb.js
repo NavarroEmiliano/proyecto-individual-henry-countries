@@ -1,7 +1,6 @@
 const { Country, Activity } = require("../db");
 
-const getCountryByIdDb = async (req, res) => {
-  const { idPais } = req.params;
+const getCountryByIdDb = async (idPais) => {
 
   if (idPais) {
     const countryId = await Country.findByPk(idPais, {

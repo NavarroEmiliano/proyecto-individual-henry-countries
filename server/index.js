@@ -4,7 +4,7 @@ const { apiLoader } = require("./src/apiLoader");
 const PORT = 3001;
 
 conn
-  .sync({ force: false})
+  .sync({ force: true})
   .then(() => {
     server.listen(PORT, async () => {
       await apiLoader();

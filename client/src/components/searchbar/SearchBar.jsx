@@ -1,74 +1,68 @@
 import { useDispatch, useSelector } from "react-redux";
-import { searchCountries } from "../../redux/actions";
+import { saveFilters, searchCountries } from "../../redux/actions";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  const { allActivities } = useSelector((state) => state);
+  const { allActivities, allContinents,filters } = useSelector((state) => state);
 
-  const [input, setInput] = useState({
-    inputText: "",
-    continent: "Todos",
-    populationName: "",
-    activity: "Todas",
-    sortBy: "",
-  });
-
+  const [input, setInput] = useState(filters);
   const handleSearch = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
-
+  
+  
   useEffect(() => {
+    dispatch(saveFilters(input));
     dispatch(searchCountries(input));
-  }, [input]);
-
-  console.log(input);
+  }, [input])
+  
 
   return (
-    <div>
+    <div className={styles.div__input}>
       <input
         type="text"
         name="inputText"
         value={input.inputText}
         onChange={handleSearch}
+        className={styles.input}
       />
       {pathname === "/home" && (
-        <div>
+        <div className={styles.options__div}>
           <select name="activity" id="" onChange={handleSearch}>
-          <option value=""></option>
-            <option value="Todas">Todas</option>
-            {[...new Set(allActivities?.map((activity) => activity.name))].map(
-              (activityName) => (
-                <option key={activityName} value={activityName}>
-                  {activityName}
-                </option>
-              )
-            )}
+            <option value="Todas">Actividades</option>
+            {Array.isArray(allActivities) &&
+              allActivities.length > 0 &&
+              [...new Set(allActivities.map((activity) => activity.name))].map(
+                (activityName) => (
+                  <option key={activityName} value={activityName}>
+                    {activityName}
+                  </option>
+                )
+              )}
           </select>
 
           <select name="continent" onChange={handleSearch}>
-          <option value=""></option>
-            <option value="Todos">Todos</option>
-            <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="Asia">Asia</option>
-            <option value="Africa">Africa</option>
-            <option value="South America">South America</option>
-            <option value="Oceania">Oceania</option>
-            <option value="Antarctica">Antarctica</option>
+            <option value="Todos">Continente</option>
+            {allContinents.map((continent) => (
+              <option key={continent} value={continent}>
+                {" "}
+                {continent}
+              </option>
+            ))}
           </select>
 
           <select name="populationName" id="" onChange={handleSearch}>
-            <option value=""></option>
             <option value="population">Población</option>
             <option value="name">Nombre</option>
           </select>
 
           <select name="sortBy" id="" onChange={handleSearch}>
-            <option value=""></option>
+            <option value="">Orden</option>
             <option value="A">Ascendente</option>
             <option value="D">Descendente</option>
           </select>

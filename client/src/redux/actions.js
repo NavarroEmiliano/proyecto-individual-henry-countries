@@ -3,9 +3,15 @@ import {
   GET_COUNTRY_BY_ID,
   SEARCH_COUNTRIES,
   GET_ALL_ACTIVITIES,
+  DELETE_ACTIVITY,
+  GET_ALL_CONTINENTS,
+  SAVE_FILTERS,
 } from "./action-type";
 import axios from "axios";
-const endpoint = "http://localhost:3001/countries";
+
+const RUTA = "http://localhost:3001";
+
+const endpoint = `${RUTA}/countries`;
 
 export const addAllCountries = () => {
   return async (dispatch) => {
@@ -24,7 +30,7 @@ export const addAllCountries = () => {
 export const getCountryById = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${endpoint}/${id}`);
+      const { data } = await axios.get(`${RUTA}/${id}`);
       return dispatch({
         type: GET_COUNTRY_BY_ID,
         payload: data,
@@ -45,17 +51,37 @@ export const searchCountries = (input) => {
 export const getAllActivities = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/activities");
-      if(data){
+      const { data } = await axios.get(`${RUTA}/activities`);
+
+      if (typeof data !== "string") {
         return dispatch({
           type: GET_ALL_ACTIVITIES,
           payload: data,
         });
       }
-
-      return "No hay actividades"
+      return "No hay actividades";
     } catch (error) {
       throw new Error(error.message);
     }
+  };
+};
+
+export const deleteActivityStore = (name) => {
+  return {
+    type: DELETE_ACTIVITY,
+    payload: name,
+  };
+};
+
+export const getAllContinents = () => {
+  return {
+    type: GET_ALL_CONTINENTS,
+  };
+};
+
+export const saveFilters = (filters) => {
+  return {
+    type: SAVE_FILTERS,
+    payload: filters,
   };
 };

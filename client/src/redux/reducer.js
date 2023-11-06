@@ -4,12 +4,23 @@ import {
   GET_COUNTRY_BY_ID,
   SEARCH_COUNTRIES,
   GET_ALL_ACTIVITIES,
+  DELETE_ACTIVITY,
+  GET_ALL_CONTINENTS,
+  SAVE_FILTERS,
 } from "./action-type";
 
 const initialState = {
   allCountries: [],
   filteredCountries: [],
   allActivities: [],
+  allContinents: [],
+  filters: {
+    inputText: "",
+    continent: "Todos",
+    populationName: "",
+    activity: "Todas",
+    sortBy: "",
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,7 +39,8 @@ const reducer = (state = initialState, action) => {
       };
 
     case SEARCH_COUNTRIES:
-      const { inputText, continent, activity ,populationName,sortBy } = action.payload;
+      const { inputText, continent, activity, populationName, sortBy } =
+        action.payload;
 
       const searchCondition = (country) => {
         const countryName = country.name.toLowerCase();
@@ -43,20 +55,18 @@ const reducer = (state = initialState, action) => {
         );
       };
 
-
-
       const countries = [...state.allCountries].filter(searchCondition);
 
-      if(populationName === "name"){
-        if(sortBy === "A"){
+      if (populationName === "name") {
+        if (sortBy === "A") {
           countries.sort((a, b) => a.name.localeCompare(b.name));
-        }else {
+        } else {
           countries.sort((a, b) => b.name.localeCompare(a.name));
         }
-      } else{
-        if(sortBy === "A"){
+      } else {
+        if (sortBy === "A") {
           countries.sort((a, b) => a.population - b.population);
-        }else {
+        } else {
           countries.sort((a, b) => b.population - a.population);
         }
       }
@@ -70,6 +80,30 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allActivities: action.payload,
+      };
+
+    case DELETE_ACTIVITY: {
+      return {
+        ...state,
+        allActivities: [...state.allActivities].filter(
+          (activity) => activity.name !== action.payload
+        ),
+      };
+    }
+
+    case GET_ALL_CONTINENTS:
+      const continents = [
+        ...new Set(state.allCountries.map((country) => country.continent)),
+      ];
+      return {
+        ...state,
+        allContinents: continents,
+      };
+
+    case SAVE_FILTERS:
+      return {
+        ...state,
+        filters: action.payload,
       };
 
     default:

@@ -5,3 +5,60 @@
   width: 100%;
   height: 95vh;
 }
+
+.form__middle {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid blue;
+  height: 100%;
+}
+
+.form__container {
+  min-height: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 400px;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.form__container h2 {
+  text-align: center;
+}
+
+.form__container label{
+  margin-bottom: 5px;
+}
+.form__container input{
+  height: 30px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
+.activities__container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar {
+  display: inline;
+}
+
+.countries__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.create__btn {
+  position: absolute;
+  margin: 50px auto;
+  top: 10%;
+}

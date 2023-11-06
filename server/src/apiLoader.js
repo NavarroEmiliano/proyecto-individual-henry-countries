@@ -14,6 +14,7 @@ const apiLoader = async () => {
         subregion,
         area,
         population,
+        coatOfArms
       }) => {
         await Country.findOrCreate({
           where: {
@@ -25,6 +26,7 @@ const apiLoader = async () => {
             subregion: subregion ? subregion : "undefined",
             area: Math.round(area),
             population: population,
+            coat: Object.keys(coatOfArms).length? coatOfArms.svg : "undefined"
           },
         });
       }

@@ -1,7 +1,54 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  gap: 0 5px;
+
+}
+
+.paginator {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+}
+
 .button{
   width: 30px;
   height: 30px;
-  margin: 0 2px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: bolder;
+  cursor: pointer;
+  transition: 0.2s ease all;
+  color: slategrey;
+
+  &:hover {
+    background-color: gray;
+    color: white;
+    border: 1px solid white;
+  }
+}
+
+.button__selected{
+  border: 2px solid lightgray;
+  background-color: gray;
+  color: lightgray;
+}
+
+.paginator_buttons {
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: 0.2s ease all;
+  color: black;
+
+  &:hover {
+    background-color: gray;
+    color: white;
+    border: 1px solid white;
+  }
 }

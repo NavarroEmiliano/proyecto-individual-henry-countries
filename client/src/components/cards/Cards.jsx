@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../card/Card";
 import styles from "./Cards.module.css";
 import Pagination from "../pagination/Pagination";
+import { getAllContinents } from "../../redux/actions";
 
 const Cards = () => {
-  const { filteredCountries } = useSelector((state) => state);
+  const { filteredCountries, allContinents } = useSelector((state) => state);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const dispatch = useDispatch();
 
   const cardsPerPage = 10;
 
@@ -16,12 +19,10 @@ const Cards = () => {
 
   const currentCards = filteredCountries.slice(firstCardIndex, lastCardIndex);
 
-
   useEffect(() => {
     setCurrentPage(1);
+    if (allContinents.length === 0) dispatch(getAllContinents());
   }, [filteredCountries]);
-
-
 
   return (
     <div>

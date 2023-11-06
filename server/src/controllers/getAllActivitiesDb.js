@@ -1,10 +1,13 @@
-const { Activity } = require("../db");
+const { Activity, Country } = require("../db");
 
 const getAllActivitiesDb = async () => {
-  const allActivities = await Activity.findAll();
-
+  const allActivities = await Activity.findAll({
+    include: {
+      model: Country,
+    },
+  });
   if (allActivities.length) return allActivities;
-  throw new Error("No hay actividades");
+  return "No hay actividades en la base de datos"
 };
 
 module.exports = {

@@ -1,0 +1,16 @@
+.activity__container {
+  display: flex;
+  width: 50%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity__name {
+  background-color: rgb(101, 161, 11);
+  width: 80%;
+  height: 30px;
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.532);
+}

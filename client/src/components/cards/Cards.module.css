@@ -1,11 +1,14 @@
 .cards_container {
-  min-width: 100vw;
+  min-height: 85vh;
+  width: 100vw;
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  align-content: space-between;
   justify-content: center;
-  min-height: 85vh;
-  background-color: black;
+  align-items: center;
+  backdrop-filter: blur(40px);
+  box-shadow: 4px 4px 20px black;
+  margin-bottom: 5px;
 }
 .pagination_container {
   display: flex;
