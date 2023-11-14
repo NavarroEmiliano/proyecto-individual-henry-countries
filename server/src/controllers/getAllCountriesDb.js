@@ -3,7 +3,7 @@ const { Country, Activity } = require("../db");
 
 const getAllCountriesDb = async (name) => {
   if (name) {
-    // Búsqueda por nombre, incluyendo actividades.
+
     const countryFinded = await Country.findOne({
       where: {
         name: {
@@ -11,7 +11,7 @@ const getAllCountriesDb = async (name) => {
         },
       },
       include: {
-        model: Activity, // Incluye el modelo Activity
+        model: Activity, 
         through: { attributes: [] },
       },
     });
@@ -21,10 +21,10 @@ const getAllCountriesDb = async (name) => {
     return countryFinded;
   }
 
-  // Búsqueda de todos los países, incluyendo actividades.
+
   const allCountries = await Country.findAll({
     include: {
-      model: Activity, // Incluye el modelo Activity
+      model: Activity,
       through: { attributes: [] },
     },
   });

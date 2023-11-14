@@ -1,8 +1,15 @@
 .btn {
   height: 30px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
   backdrop-filter: blur(10px);
   background-color: white;
+  transition: all 0.1s ease-in;
+}
+.btn:hover{
+  background-color: transparent;
+  transform: scale(1.1);
+  color: white;
+  background-color: #3d5a80;
 }

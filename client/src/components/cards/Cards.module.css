@@ -1,11 +1,11 @@
 .cards_container {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
   min-height: 85vh;
   width: 100vw;
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  margin-top: 50px;
   backdrop-filter: blur(40px);
   box-shadow: 4px 4px 20px black;
   margin-bottom: 5px;

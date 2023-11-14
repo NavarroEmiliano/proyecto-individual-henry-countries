@@ -6,6 +6,7 @@ import {
   DELETE_ACTIVITY,
   GET_ALL_CONTINENTS,
   SAVE_FILTERS,
+  INPUT_FORM_FILTER,
 } from "./action-type";
 import axios from "axios";
 
@@ -85,3 +86,11 @@ export const saveFilters = (filters) => {
     payload: filters,
   };
 };
+
+export const getCountriesFromInputForm = (input) => {
+ return {
+  type:INPUT_FORM_FILTER,
+  payload:input
+ }
+}
+

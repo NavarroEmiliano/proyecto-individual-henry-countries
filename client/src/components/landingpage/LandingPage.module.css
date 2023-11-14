@@ -24,20 +24,19 @@
 
 .button {
   width: 300px;
-  height: 40px;
   background-color: transparent;
   color: white;
-  font-size: 1rem ;
-  text-shadow: 2px 2px 2px black;
-  box-shadow: 4px 4px 20px black;
+  text-shadow: 1px 1px 1px black;
+  box-shadow: 4px 4px 10px black;
   transition: all 0.2s ease-in;
   backdrop-filter: blur(5px);
   border-radius: 5px;
+  padding: 5px;
+  font-size: 1.5rem;
 }
 
 .button:hover{
-  background-color: rgba(255, 255, 255, 0.568);
-  color: rgb(0, 0, 0);
-  text-shadow: 2px 2px 2px white;
+  background-color: #0cf574;
+  color: #3d5a80;
 
 }

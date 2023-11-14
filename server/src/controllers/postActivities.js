@@ -15,7 +15,7 @@ const postActivities = async ({
       season,
     });
 
-    // Relaciona la actividad con todos los países de una vez
+
     await postActivity.setCountries(countryId);
 
     return postActivity;

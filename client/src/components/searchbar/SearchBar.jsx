@@ -8,19 +8,20 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  const { allActivities, allContinents,filters } = useSelector((state) => state);
+  const { allActivities, allContinents, filters } = useSelector(
+    (state) => state
+  );
 
   const [input, setInput] = useState(filters);
+
   const handleSearch = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
   
-  
   useEffect(() => {
     dispatch(saveFilters(input));
     dispatch(searchCountries(input));
-  }, [input])
-  
+  }, [input]);
 
   return (
     <div className={styles.div__input}>

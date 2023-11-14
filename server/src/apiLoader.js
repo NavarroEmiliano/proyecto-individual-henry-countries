@@ -4,6 +4,7 @@ const { Country } = require("./db");
 const apiLoader = async () => {
   try {
     const { data } = await axios.get("http://localhost:5000/countries");
+    
     data.forEach(
       async ({
         cca3,

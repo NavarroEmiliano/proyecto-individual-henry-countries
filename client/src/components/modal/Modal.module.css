@@ -1,0 +1,32 @@
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
+  height: 50px;
+  width: 200px;
+  transform: translateX(-50%);
+  background-color: rgb(3, 212, 3);
+  border-radius: 10px;
+  animation: fade-in-hold-out 4s forwards;
+  box-shadow: 2px 2px 10px;
+  opacity: 0;
+}
+
+@keyframes fade-in-hold-out {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

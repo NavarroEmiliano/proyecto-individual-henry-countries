@@ -15,6 +15,7 @@ const Pagination = ({
   }
 
   let pagesToShow;
+  
   if (currentPage >= 5 && currentPage <= totalPages - 5) {
     pagesToShow = pages.slice(currentPage - 5, currentPage + 4);
   } else if (currentPage > 5 && currentPage >= totalPages - 5) {

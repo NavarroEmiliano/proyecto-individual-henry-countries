@@ -7,6 +7,7 @@ import {
   DELETE_ACTIVITY,
   GET_ALL_CONTINENTS,
   SAVE_FILTERS,
+  INPUT_FORM_FILTER,
 } from "./action-type";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   filteredCountries: [],
   allActivities: [],
   allContinents: [],
+  inputFormFilter: [],
   filters: {
     inputText: "",
     continent: "Todos",
@@ -106,6 +108,20 @@ const reducer = (state = initialState, action) => {
         filters: action.payload,
       };
 
+    case INPUT_FORM_FILTER:
+      const countriesCondition = (country) => {
+        const countryName = country.name.toLowerCase();
+        const payload = action.payload.toLowerCase();
+        return countryName.includes(payload);
+      };
+      const countriesFiltered = [...state.allCountries].filter(
+        countriesCondition
+      );
+
+      return {
+        ...state,
+        inputFormFilter: countriesFiltered,
+      };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ const putActivityDb = async (body) => {
     throw new Error("La información recibida está incompleta");
 
 
-  const activity = await await Activity.findByPk(id, {
+  const activity = await Activity.findByPk(id, {
     include: {
       model: Country,
       through: { attributes: [] },

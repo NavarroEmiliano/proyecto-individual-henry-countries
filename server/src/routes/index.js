@@ -2,7 +2,6 @@ const { Router } = require("express");
 const router = Router();
 
 //Handlers
-const { postUsers } = require("../controllers/postUsers");
 const { getAllCountriesDbHandler } = require("../handlers/getAllCountriesDbHandler");
 const { getAllActivitiesDbHandler } = require("../handlers/getAllActivitiesDbHandler");
 const { getCountryByIdDbHandler } = require("../handlers/getCountryByIdDbHandler");
@@ -18,6 +17,5 @@ router.post("/activities", postActivitiesHandler);
 router.delete("/activities/:id", deleteActivityHandler)
 router.put("/activities",updateActivityHandler)
 
-router.post("/user", postUsers);
 
 module.exports = router;

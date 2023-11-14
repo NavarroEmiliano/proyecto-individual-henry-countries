@@ -6,19 +6,19 @@ import Nav from "./components/nav/Nav";
 import LandingPage from "./components/landingpage/LandingPage";
 import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
-import PostActivity from "./components/postactivity/PostActivity";
+import ActivityForm from "./components/activityform/ActivityForm";
 
 const App = () => {
   const { pathname } = useLocation();
   return (
     <>
-      {(pathname !== "/" && pathname !== "/register") ? <Nav /> : ""}
+      {pathname !== "/" ? <Nav /> : ""}
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/activity" element={<PostActivity />} />
+        <Route path="/activity" element={<ActivityForm />} />
       </Routes>
     </>
   );

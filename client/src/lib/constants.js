@@ -5,5 +5,6 @@ export const RESET_ACTIVITY_STATE = {
   season: "",
   duration: "",
   difficulty: "",
+  countryFilter: "",
   countries: [],
 };

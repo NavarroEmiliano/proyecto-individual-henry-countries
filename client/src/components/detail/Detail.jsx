@@ -5,7 +5,9 @@ import styles from "./Detail.module.css";
 
 const Detail = () => {
   const [country, setCountry] = useState({});
+
   const [imageLoaded, setImageLoaded] = useState(false);
+
   const params = useParams();
   const RUTA = "http://localhost:3001";
   useEffect(() => {
@@ -23,16 +25,15 @@ const Detail = () => {
     findCountry();
   }, []);
 
+  console.log(country.Activities);
+
   return (
     <div className={styles.container}>
       <div className={styles.coat__div}>
         {country.coat !== "undefined" ? (
           <div>
-            {!imageLoaded ? (
-              <div className={styles.loading}>Cargando...</div>
-            ) : (
-              ""
-            )}
+            <h2>Escudo de armas</h2>
+            {!imageLoaded && <div className={styles.loading}>Cargando...</div>}
             <img
               src={country?.coat}
               alt=""
@@ -56,6 +57,18 @@ const Detail = () => {
           <h2>Continente: {country?.continent}</h2>
         </div>
       </div>
+      {country?.Activities?.length > 0 && (
+        <div className={styles.activities__div}>
+          {country.Activities.map((country) => (
+            <div key={country.name}  className={styles.activity}>
+              <h2>Actividad: {country.name}</h2>
+              <h2>Dificultad: {country.difficulty}</h2>
+              <h2>Estación: {country.season}</h2>
+              <h2>Duracion: {country.duration}</h2>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
